@@ -1,0 +1,31 @@
+# Model config matching assets/ckpts/stylizer-no-style-enc.ckpt.
+dim: 768
+depth: 16
+heads: 12
+dim_head: 64
+dropout: 0.1
+ff_mult: 4
+mel_dim: 100
+content_dim: 768
+sigma: 0.0
+odeint_kwargs:
+  method: euler
+audio_drop_prob: 0.3
+cond_drop_prob: 0.2
+frac_lengths_mask:
+  - 0.2
+  - 0.6
+vocab_size: null
+use_ssl_style_emb: true
+use_style_encoder: false
+ssl_style_encoder_config:
+  n_ssl_layers: 12
+  input_dim: 768
+  hidden_dim: 768
+  dilations:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+  nstacks: 2

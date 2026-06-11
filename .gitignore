@@ -1,0 +1,10 @@
+*.ckpt
+*.pt
+__pycache__/
+*.pyc
+wandb
+.cache
+.vscode/
+*converted.wav
+*converted_*.wav
+*target_spkrs.tar

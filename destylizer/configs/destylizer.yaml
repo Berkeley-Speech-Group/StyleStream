@@ -1,0 +1,17 @@
+# Model config matching assets/ckpts/destylizer.ckpt.
+ssl_model_id: facebook/hubert-large-ls960-ft
+ssl_layer_idx: 18
+ssl_num_hidden_layers: 18
+input_dim: 1024
+d_model: 768
+nhead: 12
+num_encoder_layers: 6
+num_decoder_layers: 4
+dim_feedforward: 3072
+dropout: 0.1
+use_convnext: true
+fsq_levels:
+  - 5
+  - 3
+  - 3
+fsq_layer_idx: 6

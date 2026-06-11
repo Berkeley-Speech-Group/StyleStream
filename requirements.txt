@@ -1,0 +1,26 @@
+# PyAudio needs PortAudio headers on macOS/Linux before pip can build it.
+# In a conda env, run this once before pip install:
+#   conda install -c conda-forge portaudio
+# Or on macOS with Homebrew:
+#   brew install portaudio
+
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.9.1+cu128; platform_system == "Windows"
+torchaudio==2.9.1+cu128; platform_system == "Windows"
+torch==2.9.1+cu128; platform_system == "Linux"
+torchaudio==2.9.1+cu128; platform_system == "Linux"
+torch==2.9.1; platform_system == "Darwin"
+torchaudio==2.9.1; platform_system == "Darwin"
+
+numpy==1.26.4
+PyAudio==0.2.14
+lightning==2.5.6
+torchdiffeq==0.2.5
+soundfile==0.13.1
+librosa==0.11.0
+transformers==4.57.1
+huggingface_hub>=0.34.0,<1.0
+jiwer==4.0.0
+x-transformers==2.11.23
+streamlit>=1.40.0
