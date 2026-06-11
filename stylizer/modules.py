@@ -470,7 +470,7 @@ class CrossAttention(nn.Module):
 class Attention(nn.Module):
     def __init__(
         self,
-        processor: JointAttnProcessor | AttnProcessor | AlibiAttnProcessor | FlashAlibiAttnProcessor | ChunkedCausalAttnProcessor,
+        processor: JointAttnProcessor | AttnProcessor | AlibiAttnProcessor | ChunkedCausalAttnProcessor,
         dim: int,
         heads: int = 8,
         dim_head: int = 64,
@@ -874,37 +874,18 @@ class JointAttnProcessor:
 
 
 class DiTBlock(nn.Module):
-    def __init__(self, dim, heads, dim_head, ff_mult=4, dropout=0.1, chunked=False, use_flash_attn=False):
+    def __init__(self, dim, heads, dim_head, ff_mult=4, dropout=0.1, chunked=False):
         super().__init__()
 
         self.attn_norm = AdaLayerNorm(dim)
-        # self.attn = Attention(
-        #     processor=AttnProcessor(pe_attn_head=pe_attn_head),
-        #     dim=dim,
-        #     heads=heads,
-        #     dim_head=dim_head,
-        #     dropout=dropout,
-        #     qk_norm=qk_norm,
-        # )
-        
-        # Using ALiBi bias for extrapolation - Flash Attention if available
         if not chunked:
-            if use_flash_attn:
-                self.attn = Attention(
-                    processor=FlashAlibiAttnProcessor(),
-                    dim=dim,
-                    heads=heads,
-                    dim_head=dim_head,
-                    dropout=dropout,
-                )
-            else:
-                self.attn = Attention(
-                    processor=AlibiAttnProcessor(),
-                    dim=dim,
-                    heads=heads,
-                    dim_head=dim_head,
-                    dropout=dropout,
-                )
+            self.attn = Attention(
+                processor=AlibiAttnProcessor(),
+                dim=dim,
+                heads=heads,
+                dim_head=dim_head,
+                dropout=dropout,
+            )
         else:
             self.attn = Attention(
                 processor=ChunkedCausalAttnProcessor(),
