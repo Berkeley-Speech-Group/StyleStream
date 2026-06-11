@@ -162,7 +162,7 @@ Run this locally on the machine with your microphone and headphones.
 
 Before starting audio IO, the script loads the targets in `TGT_LIST`, runs a speed test from `16` down to `6` inference steps, and automatically uses the highest step count that fits the realtime budget.
 
-Edit the top of [inference/streaming.py](/Users/louisliu/Desktop/StyleStream/inference/streaming.py) to change:
+Edit the top of [inference/streaming.py](inference/streaming.py) to change:
 
 - `TGT_LIST`: target speakers available during this run
 - `CHUNK_SIZE`: streaming chunk size
